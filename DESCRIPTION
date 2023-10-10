@@ -1,0 +1,23 @@
+Package: chipscape
+Title: Workflow for streamlined ChIP-Seq analysis
+Version: 0.0.0.9001
+Authors@R: c(
+    person("Lucio Rezende", "Queiroz", , "luciorqueiroz@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-6090-1834"))
+  )
+Description: Chipscape is a powerful and user-friendly R package designed for
+    streamlined ChIP-Seq analysis.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    condathis,
+    dplyr,
+    fs,
+    GenomicRanges,
+    readr,
+    rlang
+Remotes:
+    github::luciorq/condathis
+    bioc::GenomicRanges
