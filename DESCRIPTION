@@ -19,5 +19,5 @@ Imports:
     readr,
     rlang
 Remotes:
-    github::luciorq/condathis
+    github::luciorq/condathis,
     bioc::GenomicRanges
