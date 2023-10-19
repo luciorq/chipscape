@@ -7,25 +7,34 @@
 run_macs2(
   sample_name,
   treatment_bam,
-  control_bam,
+  control_bam = NULL,
   cutoff = 0.05,
   broad_cutoff = 0.1,
   broad = FALSE,
+  model = TRUE,
+  genome = "hs",
+  input_format = "BAMPE",
   env_name = "macs2-env"
 )
 }
 \arguments{
-\item{sample_name}{The name of the sample.}
+\item{sample_name}{The name of the sample. This value will be used
+as the prefix for the output files and output directory.}
 
 \item{treatment_bam}{The path to the treatment BAM file.}
 
-\item{control_bam}{The path to the control BAM file.}
+\item{control_bam}{The path to the control BAM file. If \code{NULL} then
+no control is used.}
 
-\item{cutoff}{The cutoff to use for peak calling.}
+\item{cutoff}{The cutoff to use for peak calling. Defaults to \code{0.05}.}
 
-\item{broad_cutoff}{The cutoff to use for broad peak calling.}
+\item{broad_cutoff}{The cutoff to use for broad peak calling.
+Defaults to \code{0.1}.}
 
-\item{broad}{Whether to call broad peaks.}
+\item{broad}{Logical. Whether to call broad peaks. Defaults to \code{FALSE}.}
+
+\item{model}{Logical. Whether to model the fragment length.
+For paired-end samples this should be \code{FALSE}. Defaults to \code{TRUE}.}
 
 \item{env_name}{The name of the Conda environment to use.}
 }
