@@ -2,7 +2,7 @@
 % Please edit documentation in R/run_macs.R
 \name{run_macs2}
 \alias{run_macs2}
-\title{Run MACS2 peak calling}
+\title{Run MACS2 Peak Calling}
 \usage{
 run_macs2(
   sample_name,
@@ -30,5 +30,5 @@ run_macs2(
 \item{env_name}{The name of the Conda environment to use.}
 }
 \description{
-Run MACS2 peak calling
+Run MACS2 Peak Calling
 }

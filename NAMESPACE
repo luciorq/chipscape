@@ -3,3 +3,4 @@
 export(macs2_to_ranges_df)
 export(ranges_df_to_granges)
 export(run_macs2)
+export(run_mapping)

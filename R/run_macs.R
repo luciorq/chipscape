@@ -1,4 +1,4 @@
-#' Run MACS2 peak calling
+#' Run MACS2 Peak Calling
 #'
 #' @param sample_name The name of the sample.
 #'
@@ -26,8 +26,11 @@ run_macs2 <- function(
   output_dir <- fs::path("macs2", sample_name)
   fs::dir_create(output_dir)
 
-  if (!isTRUE(condathis::env_exists("macs2-env"))) {
-    condathis::create_env("macs2", env_name = "macs2-env")
+  if (!isTRUE(condathis::env_exists(env_name))) {
+    condathis::create_env(
+      packages = c("macs2"),
+      env_name = env_name
+    )
   }
 
   summit_args <- c(
@@ -51,6 +54,6 @@ run_macs2 <- function(
     broad_args,
     "-n", sample_name,
     "--outdir", output_dir,
-    env_name = "macs2-env"
+    env_name = env_name
   )
 }
