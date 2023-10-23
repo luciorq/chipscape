@@ -12,6 +12,7 @@ run_macs2(
   broad_cutoff = 0.1,
   broad = FALSE,
   model = TRUE,
+  bedgraph = FALSE,
   genome = "hs",
   input_format = "BAMPE",
   env_name = "macs2-env"
@@ -21,10 +22,11 @@ run_macs2(
 \item{sample_name}{The name of the sample. This value will be used
 as the prefix for the output files and output directory.}
 
-\item{treatment_bam}{The path to the treatment BAM file.}
+\item{treatment_bam}{The path to the treatment BAM file. This argument
+accepts a vector of paths.}
 
 \item{control_bam}{The path to the control BAM file. If \code{NULL} then
-no control is used.}
+no control is used. This argument accepts a vector of paths.}
 
 \item{cutoff}{The cutoff to use for peak calling. Defaults to \code{0.05}.}
 
@@ -35,6 +37,16 @@ Defaults to \code{0.1}.}
 
 \item{model}{Logical. Whether to model the fragment length.
 For paired-end samples this should be \code{FALSE}. Defaults to \code{TRUE}.}
+
+\item{bedgraph}{Logical. Whether to output the bedgraph file.
+Defaults to \code{FALSE}.}
+
+\item{genome}{The genome to use. Defaults to \code{hs}. If a non-model organism is
+used, please use the genome length as stated in MACS2 documentation.}
+
+\item{input_format}{The input format. Defaults to \code{BAMPE} for BAM from
+paired-end experiment. Other options are are stated in the MACS2
+documentation.}
 
 \item{env_name}{The name of the Conda environment to use.}
 }
