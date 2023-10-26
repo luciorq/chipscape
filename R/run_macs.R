@@ -44,14 +44,15 @@ run_macs2 <- function(
     genome = "hs",
     input_format = "BAMPE",
     env_name = "macs2-env") {
-  output_dir <- fs::path("macs2", sample_name)
-  fs::dir_create(output_dir)
-
   if (!isTRUE(condathis::env_exists(env_name))) {
     condathis::create_env(
       packages = c("macs2"),
       env_name = env_name
     )
+  }
+  output_dir <- fs::path("macs2", sample_name)
+  if (!fs::dir_exists(dirname(output_dir))) {
+    fs::dir_create(dirname(output_dir))
   }
   summit_args <- c(
     "--call-summits"

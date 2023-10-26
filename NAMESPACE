@@ -3,6 +3,7 @@
 export(bismark_df_to_granges)
 export(intersect_df_from_granges)
 export(macs2_to_ranges_df)
+export(merge_bam)
 export(merge_peaks_union)
 export(ranges_df_to_granges)
 export(read_bismark_cpg)
