@@ -2,6 +2,7 @@
 #' Merge ChIP-Seq peaks by the union of the two peak sets.
 #' @param gr1 The first GRanges object.
 #' @param gr2 The second GRanges object.
+#'
 #' @export
 merge_peaks_union <- function(gr1, gr2) {
   union_gr <- GenomicRanges::union(
@@ -61,9 +62,19 @@ merge_peaks_union <- function(gr1, gr2) {
     dplyr::left_join(gr2_union_df, by = "region_name") |>
     dplyr::mutate(
       chip_fold_1 = dplyr::if_else(is.na(chip_fold_1), NA_integer_, chip_fold_1),
-      chip_fold_2 = dplyr::if_else(is.na(chip_fold_2), NA_integer_, chip_fold_2),
-      # mean_chip_fold_enrichment = (chip_fold_1 + chip_fold_2)/2
-      mean_chip_fold_enrichment = min(chip_fold_1, chip_fold_2, (chip_fold_1 + chip_fold_2)/2, na.rm = TRUE)
+      chip_fold_2 = dplyr::if_else(is.na(chip_fold_2), NA_integer_, chip_fold_2)
+    ) |>
+    dplyr::mutate(
+      mean_chip_fold_enrichment = ((chip_fold_1 + chip_fold_2)/2)
+      # mean_chip_fold_enrichment = min(chip_fold_1, chip_fold_2, (chip_fold_1 + chip_fold_2)/2, na.rm = TRUE)
+      # mean_chip_fold_enrichment = min(chip_fold_1, chip_fold_2, (chip_fold_1 + chip_fold_2)/2, na.rm = TRUE)
+    ) |>
+    dplyr::mutate(
+      mean_chip_fold_enrichment = dplyr::if_else(is.na(mean_chip_fold_enrichment) & is.na(chip_fold_1), chip_fold_2, mean_chip_fold_enrichment)
+      #chip_fold_2 = dplyr::if_else(is.na(chip_fold_2), NA_integer_, chip_fold_2)
+    ) |>
+    dplyr::mutate(
+      mean_chip_fold_enrichment = dplyr::if_else(is.na(mean_chip_fold_enrichment) & is.na(chip_fold_2), chip_fold_1, mean_chip_fold_enrichment)
     ) |>
     dplyr::select(-c(chip_fold_1, chip_fold_2)) |>
     dplyr::arrange(-mean_chip_fold_enrichment) |>
